@@ -4,6 +4,9 @@
     branches: ["master"]
   push:
     branches: ["master"]
+    paths:
+    - docker/Dockerfile
+    - "."
 
 name: Runner
 jobs:
@@ -11,10 +14,8 @@ jobs:
     runs-on: ubuntu-latest
     name: Build Docker Image
     env:
-      RUNNER_VERSION: 2.291.1
-      DOCKER_VERSION: 20.10.14
-      DOCKERHUB_USERNAME: obynodavid12
-      DOCKERHUB_REPOSITORY: action-runner
+      DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+      DOCKERHUB_REPOSITORY: github-runner
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -41,9 +42,7 @@ jobs:
           platforms: linux/amd64
           push: false
           load: false
-          build-args: |
-            RUNNER_VERSION=${RUNNER_VERSION:?}
-            DOCKER_VERSION=${DOCKER_VERSION:?}
+          
       - name: Login to DockerHub
         if: ${{ github.event_name == 'push' }}
         uses: docker/login-action@v1
@@ -60,11 +59,12 @@ jobs:
           file: ./Dockerfile
           platforms: linux/amd64
           push: true
-          build-args: |
-            RUNNER_VERSION=${RUNNER_VERSION:?}
-            DOCKER_VERSION=${DOCKER_VERSION:?}
           tags: |
-            ${{ env.DOCKERHUB_USERNAME }}/${{ env.DOCKERHUB_REPOSITORY }}:latest
-            ${{ env.DOCKERHUB_USERNAME }}/${{ env.DOCKERHUB_REPOSITORY }}:v${{ env.RUNNER_VERSION }}
+            ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.DOCKERHUB_REPOSITORY }}:latest
+            ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.DOCKERHUB_REPOSITORY }}:
+          cache-from: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/${{ env.DOCKERHUB_REPOSITORY }}:buildcache
+          cache-to: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/${{ env.DOCKERHUB_REPOSITORY }}:buildcache,mode=max
+          
+      
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }} ${{ steps.docker_build_and_push.outputs.digest}}
