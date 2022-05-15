@@ -4,7 +4,6 @@ on:
   
   push:
     branches: [ master ]
-    tags: [ 'v*.*.*' ]
   pull_request:
     branches: [ master ]
 
@@ -18,7 +17,7 @@ env:
 jobs:
   build:
 
-    runs-on: [ 'self-hosted', 'docker-runner' ]
+    runs-on: [ 'self-hosted', 'my-runner' ]
     permissions:
       contents: read
       packages: write
