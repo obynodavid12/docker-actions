@@ -70,7 +70,7 @@ jobs:
       
       -  name: Test
          run: |
-          docker run --it --name my-runner -e RUNNER_NAME=my-runner -e GITHUB_ACCESS_TOKEN=${{ secrets.PERSONAL_ACCESS_TOKEN }} -e RUNNER_REPOSITORY_URL=https://github.com/obynodavid12/docker-actions -v /var/run/docker.sock:/var/run/docker.sock ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.DOCKERHUB_REPOSITORY }}:latest
+          #docker run --it --name my-runner -e RUNNER_NAME=my-runner -e GITHUB_ACCESS_TOKEN=${{ secrets.PERSONAL_ACCESS_TOKEN }} -e RUNNER_REPOSITORY_URL=https://github.com/obynodavid12/docker-actions -v /var/run/docker.sock:/var/run/docker.sock ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.DOCKERHUB_REPOSITORY }}:latest
           docker run --rm ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.DOCKERHUB_REPOSITORY }}:latest --name my-runner -e RUNNER_NAME=my-runner -e GITHUB_ACCESS_TOKEN=${{ secrets.PERSONAL_ACCESS_TOKEN }} -e RUNNER_REPOSITORY_URL=https://github.com/obynodavid12/docker-actions -v /var/run/docker.sock:/var/run/docker.sock 
      
       - name: Image digest
