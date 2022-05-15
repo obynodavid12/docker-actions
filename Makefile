@@ -1,4 +1,4 @@
-APP_NAME="obynodavid12/github-runner"
+APP_NAME="obynodavid12/github-runners"
 
 # HELP
 # This will output the help for each task
