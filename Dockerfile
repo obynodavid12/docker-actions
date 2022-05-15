@@ -25,31 +25,17 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
     apt-get install -y \
         curl \
         unzip \
-        awscli \
         apt-transport-https \
-        add-apt-repository -y ppa:git-core/ppa \
         ca-certificates \
         software-properties-common \
         sudo \
         supervisor \
         jq \
-        tar \
-        gpg-agent \
-        zstd \
-        inetutils-ping \
-        wget \
-        dirmngr \
         iputils-ping \
         build-essential \
         zlib1g-dev \
         gettext \
         liblttng-ust0 \
-        liblttng-ust1 \
-        python3-pip \
-        python3-setuptools \
-        python3 \
-        locales \
-        dumb-init \
         libcurl4-openssl-dev \
         openssh-client && \
     rm -rf /var/lib/apt/lists/* && \
