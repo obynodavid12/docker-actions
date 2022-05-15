@@ -14,7 +14,7 @@ jobs:
     env:
       DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
       DOCKERHUB_REPOSITORY: github-runners
-      GITHUB_ACCESS_TOKEN: ${{ secrets.RUNNER_TOKEN }}
+      PERSONAL_ACCESS_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     defaults:
         run:
@@ -71,11 +71,11 @@ jobs:
       
       -  name: Test
          env:
-          GITHUB_ACCESS_TOKEN: ${{ secrets.RUNNER_TOKEN }}
+          PERSONAL_ACCESS_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
          run: |
           #docker run --it --name my-runner -e RUNNER_NAME=my-runner -e GITHUB_ACCESS_TOKEN=${{ secrets.RUNNER_TOKEN }} -e RUNNER_REPOSITORY_URL=https://github.com/obynodavid12/docker-actions -v /var/run/docker.sock:/var/run/docker.sock ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.DOCKERHUB_REPOSITORY }}:latest
-          docker run --rm ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.DOCKERHUB_REPOSITORY }}:latest --name my-runner -e RUNNER_NAME=my-runner -e GITHUB_ACCESS_TOKEN=${{ secrets.RUNNER_TOKEN }} -e RUNNER_REPOSITORY_URL=https://github.com/obynodavid12/docker-actions -v /var/run/docker.sock:/var/run/docker.sock 
+          docker run --rm ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.DOCKERHUB_REPOSITORY }}:latest --name my-runner -e RUNNER_NAME=my-runner -e PERSONAL_ACCESS_TOKEN=${{ secrets.PERSONAL_ACCESS_TOKEN }} -e RUNNER_REPOSITORY_URL=https://github.com/obynodavid12/docker-actions -v /var/run/docker.sock:/var/run/docker.sock 
      
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }} ${{ steps.docker_build_and_push.outputs.digest}}
