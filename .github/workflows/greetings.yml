@@ -8,7 +8,7 @@ name: Greetings
 
 jobs:
   greeting:
-    runs-on: self-hosted
+    runs-on: [ 'self-hosted', 'my-runner' ]
     permissions:
       issues: write
       pull-requests: write
