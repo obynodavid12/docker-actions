@@ -62,7 +62,7 @@ jobs:
           file: ./Dockerfile
           platforms: linux/amd64
           push: true
-          load: true
+          load: false
           tags: |
             ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.DOCKERHUB_REPOSITORY }}:latest
           #cache-from: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/${{ env.DOCKERHUB_REPOSITORY }}:buildcache
