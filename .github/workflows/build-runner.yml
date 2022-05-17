@@ -78,7 +78,7 @@ jobs:
           docker run -it --detach --name my-runner1 -e RUNNER_NAME=docker-runner1 -e RUNNER_TOKEN=${{ secrets.PERSONAL_ACCESS_TOKEN }} -e RUNNER_REPOSITORY_URL=https://github.com/obynodavid12/docker-actions -v /var/run/docker.sock:/var/run/docker.sock ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.DOCKERHUB_REPOSITORY }}:latest
           #docker run --rm --name my-runner1 -e RUNNER_NAME=docker-runner -e RUNNER_TOKEN=${{ secrets.PERSONAL_ACCESS_TOKEN }} -e RUNNER_REPOSITORY_URL=https://github.com/obynodavid12/docker-actions -v /var/run/docker.sock:/var/run/docker.sock ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.DOCKERHUB_REPOSITORY }}:latest
           #docker logs my-runner1 -f
-          docker start docker-runner2
+          docker start d14996416b3042389597d03d6545d514a1ea090899c17ae58344d86fd993bb4b
 
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }} ${{ steps.docker_build_and_push.outputs.digest}}
