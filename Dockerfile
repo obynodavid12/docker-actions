@@ -1,4 +1,4 @@
-ARG FROM=ubuntu:focal
+ARG FROM=ubuntu:20.04
 FROM ${FROM}
 
 ARG DEBIAN_FRONTEND=noninteractive
