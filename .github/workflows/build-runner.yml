@@ -4,8 +4,8 @@
     branches: ["master"]
   push:
     branches: ["master"]
-       
     
+  
 name: Runner
 jobs:
   build:
