@@ -4,6 +4,9 @@
     branches: ["master"]
   push:
     branches: ["master"]
+    paths-ignore:
+      - './.github/workflows/build-runner.yml'
+      - './'
    
     
 name: Runner
