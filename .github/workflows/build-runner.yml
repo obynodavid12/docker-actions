@@ -5,8 +5,8 @@
   push:
     branches: ["master"]
     paths-ignore:
-      - './.github/workflows/build-runner.yml'
-      - './'
+      - '/docker-actions/.github/workflows/build-runner.yml'
+      - '.'
    
     
 name: Runner
